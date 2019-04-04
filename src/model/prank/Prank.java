@@ -1,4 +1,4 @@
-package mails;
+package model.prank;
 
 public class Prank {
 }
