@@ -40,35 +40,4 @@ public class Configuration {
             }
         }
     }
-
-    public static void main(String[] args) {
-
-        Properties prop = new Properties();
-        InputStream input = null;
-
-        try {
-
-            input = new FileInputStream("./config/config.properties");
-
-            // load a properties file
-            prop.load(input);
-
-            // get the property value and print it out
-            System.out.println(prop.getProperty("smtpServerAddress"));
-            System.out.println(prop.getProperty("smtpServerPort"));
-            System.out.println(prop.getProperty("numberOfGroups"));
-            System.out.println(prop.getProperty("witnessesToCC"));
-
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        } finally {
-            if (input != null) {
-                try {
-                    input.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
 }
