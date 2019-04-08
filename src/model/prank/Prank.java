@@ -5,6 +5,8 @@ import model.mail.Personne;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 public class Prank {
     private Personne envoyeur;
@@ -50,6 +52,12 @@ public class Prank {
         Message message = new Message();
 
         message.setCorps(this.message + "\n\n" + envoyeur.getPrenom() + " " + envoyeur.getNom());
+
+        String[] to = victimeTo.stream().map(p -> p.getAdresse()).collect(Collectors.toList()).toArray(new String[]{});
+        message.setTo(to);
+
+        String[] cc = victimeCC.stream().map(p -> p.getAdresse()).collect(Collectors.toList()).toArray(new String[]{});
+        message.setCc(cc);
 
         message.setFrom(envoyeur.getAdresse());
 

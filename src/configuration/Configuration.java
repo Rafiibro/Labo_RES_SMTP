@@ -1,15 +1,21 @@
 package configuration;
 
+import model.mail.Personne;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 import java.util.Properties;
 
-public class Configuration {
-    public String ServerAddress;
-    public String ServerPort;
-    public String numberOfGroups;
-    public String witnessesToCC;
+public class Configuration implements IConfiguration {
+    private String ServerAddress;
+    private int ServerPort;
+    private String numberOfGroups;
+    private List<Personne> victimesCC;
+    private final List<Personne> victimes;
+    private final List<String> messages;
+
 
     public Configuration() {
         Properties prop = new Properties();
@@ -26,7 +32,7 @@ public class Configuration {
             ServerAddress = prop.getProperty("smtpServerAddress");
             ServerPort = prop.getProperty("smtpServerPort");
             numberOfGroups = prop.getProperty("numberOfGroups");
-            witnessesToCC = prop.getProperty("witnessesToCC");
+            victimesCC = prop.getProperty("witnessesToCC");
 
         } catch (IOException ex) {
             ex.printStackTrace();
